@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context="com.stoll.charles.robotcarphoneapplication.OpeningActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_drive_mode_text"/>
+
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/drive_style_radio_group">
+
+        <RadioButton
+            android:id="@+id/drive_by_button_radio_button"
+            android:text="@string/drive_by_button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/drive_by_touch_radio_button"
+            android:text="@string/drive_by_touch_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/select_camera_control_mode_text"/>
+
+    <RadioGroup
+        android:text="@string/select_camera_control_mode_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/camera_control_style_radio_group">
+
+        <RadioButton
+            android:id="@+id/control_camera_by_button_radio_button"
+            android:text="@string/control_camera_by_button_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RadioButton
+            android:id="@+id/control_camera_by_touch_radio_button"
+            android:text="@string/control_camera_by_touch_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+    </RadioGroup>
+
+    <Button
+
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/start_driving_text"
+        android:id="@+id/start_driving_button"/>
+
+</LinearLayout>
