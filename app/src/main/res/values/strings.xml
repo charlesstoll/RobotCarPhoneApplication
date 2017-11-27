@@ -10,12 +10,16 @@
 
     <string name="forward_text">Forward</string>
     <string name="reverse_text">Reverse</string>
+    <string name="up_text">Up</string>
+    <string name="down_text">Down</string>
     <string name="right_text">Right</string>
     <string name="left_text">Left</string>
     <string name="title_activity_driving">DrivingActivity</string>
 
     <string name="no_driving_style_selected_text">No Driving Style Selected</string>
     <string name="no_camera_control_style_selected_text">No Camera Control Style Selected</string>
+
+    <string name="take_picture">Take a Picture</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
