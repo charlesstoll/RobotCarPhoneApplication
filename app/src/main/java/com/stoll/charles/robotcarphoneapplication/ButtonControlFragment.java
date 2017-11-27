@@ -6,8 +6,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 
 /**
@@ -24,6 +26,11 @@ public class ButtonControlFragment extends Fragment {
 
     private boolean mDriverControl;
 
+    private Button mForwardButton;
+    private Button mReverseButton;
+    private Button mRightButton;
+    private Button mLeftButton;
+
     private OnButtonControlFragmentInteractionListener mListener;
 
     public ButtonControlFragment() {
@@ -38,6 +45,11 @@ public class ButtonControlFragment extends Fragment {
         return fragment;
     }
 
+    public ButtonControlFragment setListener(OnButtonControlFragmentInteractionListener listener) {
+        mListener = listener;
+        return this;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,17 +62,78 @@ public class ButtonControlFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_button_control, container, false);
-    }
+        View v =  inflater.inflate(R.layout.fragment_button_control, container, false);
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        Log.d(TAG, "onButtonPressed from button control fragment called");
-        /*
-        if (mListener != null) {
-            mListener.onButtonControlFragmentInteraction(uri);
+        mForwardButton = v.findViewById(R.id.forward_button);
+        if(!mDriverControl)
+        {
+            mForwardButton.setText(R.string.up_text);
         }
-        */
+        mForwardButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, 100, 0);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, 0, 0);
+                } else {
+                    return false;
+                }
+                return true;
+            }
+        });
+
+        mReverseButton = v.findViewById(R.id.reverse_button);
+        if(!mDriverControl) {
+            mReverseButton.setText(R.string.down_text);
+        }
+
+        mReverseButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, -100, 0);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, 0, 0);
+                } else {
+                    return false;
+                }
+                return true;
+            }
+        });
+
+        mRightButton = v.findViewById(R.id.right_button);
+        mRightButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, 0, 100);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, 0, 0);
+                } else {
+                    return false;
+                }
+                return true;
+            }
+        });
+
+
+        mLeftButton = v.findViewById(R.id.left_button);
+        mLeftButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, 0, -100);
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    mListener.onButtonControlFragmentInteraction(mDriverControl, 0, 0);
+                } else {
+                    return false;
+                }
+                return true;
+            }
+        });
+
+        return v;
     }
 
     @Override
@@ -98,6 +171,6 @@ public class ButtonControlFragment extends Fragment {
      */
     public interface OnButtonControlFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onButtonControlFragmentInteraction(Uri uri);
+        void onButtonControlFragmentInteraction(boolean drivingInstruction, double yPos, double xPos);
     }
 }
